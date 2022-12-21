@@ -44,8 +44,8 @@ class Game():
 		self.sum_digits([12,13,14,15])
 
 		self._rand_new_cells()
-		self.print_common()
-		print("Move left!")
+		# self.print_common()
+		# print("Move left!")
 
 	def move_right(self):
 		self.sum_digits([3,2,1,0])
@@ -54,8 +54,8 @@ class Game():
 		self.sum_digits([15,14,13,12])
 
 		self._rand_new_cells()
-		self.print_common()
-		print("Move right!")
+		# self.print_common()
+		# print("Move right!")
 
 	def move_up(self):
 		self.sum_digits([0,4,8,12])
@@ -64,8 +64,8 @@ class Game():
 		self.sum_digits([3,7,11,15])
 
 		self._rand_new_cells()
-		self.print_common()
-		print("Move up!")
+		# self.print_common()
+		# print("Move up!")
 
 	def move_down(self):
 		self.sum_digits([12,8,4,0])
@@ -74,8 +74,26 @@ class Game():
 		self.sum_digits([15,11,7,3])
 
 		self._rand_new_cells()
-		self.print_common()
-		print("Move down!")
+		# self.print_common()
+		# print("Move down!")
+
+	def check_game_over(self):
+		if 0 in self.table:
+			return False
+
+		line = 0
+		for j in range(4):
+			for i in range(3):
+				if self.table[i + line] == self.table[i + 1 + line]:
+					return False
+			line += 4
+		line = 0
+		for j in range(3):
+			for i in range(3):
+				if self.table[i + line] == self.table[i + 4 + line]:
+					return False
+			line += 4
+		return True
 
 	def print_common(self):
 		column = 0
