@@ -14,20 +14,25 @@ def handle_message(data):
     print('received message: ' + data['data'])
     if data['data'] == "START":
         game = Game()
+        send("GAME STARTED")
         send(game.table)
-    if data['data'] == "UP":
-        game.move_up()
-        send(game.table)
-    if data['data'] == "DOWN":
-        game.move_down()
-        send(game.table)
-    if data['data'] == "LEFT":
-        game.move_left()
-        send(game.table)
-    if data['data'] == "RIGHT":
-        game.move_right()
-        send(game.table)
+    if not game.check_game_over():
+        if data['data'] == "UP":
+            game.move_up()
+            send(game.table)
+        if data['data'] == "DOWN":
+            game.move_down()
+            send(game.table)
+        if data['data'] == "LEFT":
+            game.move_left()
+            send(game.table)
+        if data['data'] == "RIGHT":
+            game.move_right()
+            send(game.table)
+    else:
+        send('GAME OVER')
 
+        
 @app.route("/")
 def main_page():
     return render_template('index.html')
