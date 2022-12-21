@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>test</h3>
+    <button id='buttonUp' onclick="move_click('UP')">UP</button>
+    <button id='buttonDown' onclick="move_click('DOWN')">DOWN</button>
+    <button id='buttonLeft' onclick="move_click('LEFT')">LEFT</button>
+    <button id='buttonRight' onclick="move_click('RIGHT')">RIGHT</button>
+    <textarea name="text" id="input-text" cols="30" rows="10"></textarea>
+    <div>
+        <table>
+        <tr>
+            <td id='1'>0</td>
+            <td id='2'>0</td>
+            <td id='3'>0</td>
+            <td id='4'>0</td>
+        </tr>
+        <tr>
+            <td id='5'>0</td>
+            <td id='6'>0</td>
+            <td id='7'>0</td>
+            <td id='8'>0</td>
+        </tr>
+        <tr>
+            <td id='9'>0</td>
+            <td id='10'>0</td>
+            <td id='11'>0</td>
+            <td id='12'>0</td>
+        </tr>
+        <tr>
+            <td id='13'>0</td>
+            <td id='14'>0</td>
+            <td id='15'>0</td>
+            <td id='16'>0</td>
+        </tr>
+    </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+    var socket = io();
+    socket.on('connect', function() {
+        socket.emit('message', {data: 'START'});
+    });
+    function move_click(move){
+        console.log(move);
+        socket.emit('message', {data: move})
+    }
+    socket.on('message', message =>{
+        console.log(message);
+        document.getElementById('input-text').value = message;
+        var counter = 1
+        message.forEach(element => {
+            document.getElementById(counter).innerHTML = element;
+            counter++
+        });
+
+// array1.forEach(element => console.log(element));
+    })
+</script>
+</body>
+</html>
