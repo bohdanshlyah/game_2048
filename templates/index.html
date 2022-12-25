@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1 id="game-status"></h1>
+    <h3>The goal of the game is to reach 2048 in one cell</h3>
     
     <div>
         <table class="center">
@@ -37,6 +38,10 @@
             <td id='16' class="coloful-cell">0</td>
         </tr>
     </table>
+    <div>
+        <h2 id="hint" class="hint">No more moves!</h2>
+        <h1 id='game-over'></h1>
+    </div>
     </div>
     <div class="buttons">
         <button id='buttonUp' onclick="move_click('UP')">UP</button>
@@ -57,17 +62,18 @@
         socket.emit('message', {data: 'START'});
     });
     function move_click(move){
-        console.log(move);
         socket.emit('message', {data: move})
     }
     socket.on('message', message =>{
-        console.log(message);
-        // document.getElementById('input-text').value = message;
-        
-        console.log(typeof message);
 
         if(typeof message === 'string'){
-            document.getElementById('game-status').innerHTML = message
+            if(message === "GAME OVER!"){
+                document.getElementById('hint').style.visibility = "visible"
+                document.getElementById('game-over').innerHTML = message
+            }
+            else{
+                document.getElementById('game-status').innerHTML = message
+            }
         };
 
         if(typeof message === 'object'){
