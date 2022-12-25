@@ -30,7 +30,7 @@ def handle_message(data):
             game.move_right()
             send(game.table)
     else:
-        send('GAME OVER')
+        send('GAME OVER!')
 
         
 @app.route("/")
