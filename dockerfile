@@ -12,6 +12,6 @@ RUN apk update \
 WORKDIR /app
 COPY ./app /app
 
-EXPOSE 5000
+EXPOSE 8000
 
-CMD ["python", "api.py"]
+CMD ["python", "app.py"]
