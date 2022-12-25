@@ -10,7 +10,6 @@ game = 'new_game'
 @socketio.on('message')
 def handle_message(data):
     global game 
-    print('received message: ' + data['data'])
     if data['data'] == "START":
         game = Game()
         send("GAME STARTED")
@@ -37,4 +36,4 @@ def main_page():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    socketio.run(app, '0.0.0.0', 5000)
+    socketio.run(app, "0.0.0.0", 8000, allow_unsafe_werkzeug=True)
