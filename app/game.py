@@ -20,8 +20,7 @@ class Game():
                             value = str(self.table[indexes[j]])
                             self.table[indexes[j-1]] = int(value)
                             self.table[indexes[j]] = 0
-                        elif self.table[indexes[j]] == \
-						self.table[indexes[j-1]]:
+                        elif self.table[indexes[j]]==self.table[indexes[j-1]]:
                             value1 = str(self.table[indexes[j]])
                             value2 = str(self.table[indexes[j-1]])
                             self.table[indexes[j-1]
