@@ -70,8 +70,8 @@ jobs:
             # login docker
             sudo docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
 
-            sudo docker-compose stop
+            sudo docker compose stop
 
-            sudo docker-compose rm
+            sudo docker compose rm
 
-            sudo docker-compose up -d
+            sudo docker compose up -d
